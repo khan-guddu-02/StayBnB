@@ -1,8 +1,5 @@
 const Listing=require("../models/listing");
 
-
-
-
 module.exports.index=async (req,res)=>{
     const allListing=await Listing.find({});
     res.render("listings/index.ejs",{allListing});
@@ -27,7 +24,7 @@ module.exports.showListing=async (req,res)=>{
     res.render("listings/show.ejs",{listing});
 };
 
-module.exports.createListing=async(req,res,next)=>{
+module.exports.createListing=async(req,res,_)=>{
 let url=req.file.path
 let filename=req.file.filename
      const newListing= new Listing(req.body.listing);
@@ -42,7 +39,6 @@ let filename=req.file.filename
 module.exports.renderEditForm=async (req,res)=>{
     let {id}=req.params;
     const listing= await Listing.findById(id);
-    req.flash("success", "Edited!");
     if(!listing){
       req.flash("error", "Listing you requested does not exist");
       res.redirect("/listings");
