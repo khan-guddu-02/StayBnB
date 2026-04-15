@@ -1,64 +1,130 @@
 <style>
-  .search-btn{
-  background-color: #fe424d; 
-  color: white;
-  border-radius: 20px;
-  padding: 0 1rem 0 1rem;
+  .search-box {
+    flex: 1;
+    max-width: 400px;
   }
-  .search-btn:hover{
-  background-color: #fe424d; 
-  color: white;
+
+  .search-inp {
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
   }
-  .search-btn i{
-    display: inline;
-    margin-right:0.5rem ;
+
+  .search-btn {
+    background-color: #fe424d;
+    color: white;
+    border-radius: 20px;
+    padding: 0.4rem 1rem;
   }
-  .search-inp{
-    border-radius:25px ;
-    padding: 0.5rem 3rem 0.5rem 3rem;
-    font-size: 1rem;
+
+  .search-btn:hover {
+    background-color: #fe424d;
+    color: white;
   }
 </style>
 
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top" >
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
-      <button
-       class="navbar-toggler"
-        type="button"
-         data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-           aria-controls="navbarNavAltMarkup"
-            aria-expanded="false"
-             aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link" href="/listings">Explore</a>
-        </div>
-        <div class="navbar-nav ms-auto">
-          <form class="d-flex" role="search">
-            <input
-             class="form-control me-2 search-inp"
-              type="search"
-               placeholder="Search destination">
-            <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
-          </form>
-        </div>
-      </div>
-      <div class="collapse navbar-collapse d-flex" id="navbarNavAltMarkup">
-        <div class="navbar-nav ms-auto">
-          <a class="nav-link" href="/listings/new">Airbnb your home</a>
-          <%if(!currentUser){%>
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
 
-            <a class="nav-link" aria-current="page" href="/signup"><b>signup</b></a>
-            <a class="nav-link" href="/login"><b>login</b></a>
-          <%}%>
-          <%if(currentUser){%>
-          <a class="nav-link" href="/logout">logout</a>
-          <%}%>
-        </div>
-      </div>
+    <!-- LOGO -->
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-regular fa-compass"></i>
+    </a>
+
+    <!-- SEARCH (ALWAYS VISIBLE) -->
+    <form class="d-flex search-box mx-2" role="search">
+      <input
+        class="form-control me-2 search-inp"
+        type="search"
+        placeholder="Search destination"
+      />
+      <button class="btn search-btn" type="submit">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </form>
+
+    <!-- TOGGLER -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#mobileMenu"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- DESKTOP MENU -->
+    <div class="d-none d-md-flex ms-auto align-items-center gap-2">
+
+      <!-- Airbnb -->
+      <a 
+        href="/listings/new"
+        class="btn"
+        style="border-radius:25px; padding:6px 14px; border:1px solid #ddd;"
+      >
+        Airbnb your home
+      </a>
+
+      <% if(!currentUser){ %>
+
+        <a 
+          href="/signup"
+          class="btn btn-dark"
+          style="border-radius:25px; padding:6px 14px;"
+        >
+          Signup
+        </a>
+
+        <a 
+          href="/login"
+          class="btn btn-outline-dark"
+          style="border-radius:25px; padding:6px 14px;"
+        >
+          Login
+        </a>
+
+      <% } %>
+
+      <% if(currentUser){ %>
+
+        <a 
+          href="/logout"
+          class="btn btn-outline-dark"
+          style="border-radius:25px; padding:6px 14px;"
+        >
+          Logout
+        </a>
+
+      <% } %>
+
     </div>
-  </nav>
+
+  </div>
+</nav>
+
+<div
+  class="offcanvas offcanvas-end"
+  tabindex="-1"
+  id="mobileMenu"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">Menu</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+
+  <div class="offcanvas-body">
+
+    <a class="nav-link mb-2" href="/listings/new">
+      Airbnb your home
+    </a>
+
+    <% if(!currentUser){ %>
+      <a class="nav-link mb-2" href="/signup">Signup</a>
+      <a class="nav-link mb-2" href="/login">Login</a>
+    <% } %>
+
+    <% if(currentUser){ %>
+      <a class="nav-link mb-2" href="/logout">Logout</a>
+    <% } %>
+
+  </div>
+</div>

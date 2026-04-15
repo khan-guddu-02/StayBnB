@@ -1,46 +1,81 @@
 <% layout("/layouts/boilerplate") %>
-<h1 class="col-6 offset-3">signup on wanderlust</h1>
-<div class="row " >
-    <div class="col-6 offset-3">
+
+<div class="container py-5">
+
+  <div class="row justify-content-center">
+
+    <div class="col-12 col-sm-10 col-md-6 col-lg-4">
+
+      <div class="card shadow-sm border-0 p-4">
+
+        <h3 class="text-center mb-4">
+          Sign up on Wanderlust
+        </h3>
+
         <form action="/signup" method="post" class="needs-validation" novalidate>
-        <div class="mb-3">
-            <label for="username" class="form-label">USername</label>
-            <input 
-            type="text" 
-            name="username" 
-            placeholder="Enter your username" 
-            class="form-control"
-            required
-            />
-            <div class="valid-feedback"> looks good</div>
-            <div class="invalid-feedback">please enter a valid username</div>
-        </div>
 
-        <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
+          <!-- Username -->
+          <div class="mb-3">
+            <label class="form-label">Username</label>
             <input 
-            type="text" 
-            name="email"
-            placeholder="Enter your email" 
-            class="form-control"
-            required
+              type="text" 
+              name="username" 
+              placeholder="Enter your username" 
+              class="form-control"
+              required
             />
-            <div class="invalid-feedback">please enter a valid Email</div>
-        </div>
+            <div class="invalid-feedback">
+              Please enter a valid username
+            </div>
+          </div>
 
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
+          <!-- Email -->
+          <div class="mb-3">
+            <label class="form-label">Email</label>
             <input 
-            type="password" 
-            name="password"
-            placeholder="Enter your password" 
-            class="form-control"
-            required
+              type="email" 
+              name="email"
+              placeholder="Enter your email" 
+              class="form-control"
+              required
             />
-            <div class="invalid-feedback">please enter a valid Password</div>
-        </div>
-        <button class="btn btn-success">signup</button>
+            <div class="invalid-feedback">
+              Please enter a valid email
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input 
+              type="password" 
+              name="password"
+              placeholder="Enter your password" 
+              class="form-control"
+              required
+            />
+            <div class="invalid-feedback">
+              Please enter a password
+            </div>
+          </div>
+
+          <!-- Button -->
+          <button class="btn btn-dark w-100 mt-2">
+            Sign Up
+          </button>
+
         </form>
 
+        <!-- Extra -->
+        <p class="text-center small mt-3 mb-0">
+          Already have an account? 
+          <a href="/login">Login</a>
+        </p>
+
+      </div>
+
     </div>
+
+  </div>
+
 </div>

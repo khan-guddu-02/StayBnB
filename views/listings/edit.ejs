@@ -1,63 +1,111 @@
 <% layout("/layouts/boilerplate") %>
-<div class="row " >
-    <div class="col-8 offset-2">
-    <h3>Edit Your Listing</h3>
-    <form  method="post" action="/listings/<%=listing._id%>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
-        <div class="mb-2">
-            <label for="title" class="form-label">Title</label>
+
+<div class="container py-4">
+  <div class="row justify-content-center">
+
+    <div class="col-12 col-md-10 col-lg-8">
+      <div class="card shadow-sm border-0 p-3">
+
+        <h3 class="mb-3 text-center">Edit Your Listing</h3>
+
+        <form 
+          method="post" 
+          action="/listings/<%=listing._id%>?_method=PUT" 
+          novalidate 
+          class="needs-validation" 
+          enctype="multipart/form-data"
+        >
+
+          <!-- Title -->
+          <div class="mb-3">
+            <label class="form-label">Title</label>
             <input
-             type="text" 
-             name="listing[title]"
+              type="text"
+              name="listing[title]"
               value="<%=listing.title%>"
-               class="form-control" required>
-            <div class="invalid-feedback">please enter a valid title</div>
-        </div>
-        <div class="mb-2">
-            <label for="description" class="form-label">Description</label>
-            <textarea
-             type="text"
-              name="listing[description]"
-               class="form-control" 
-               required><%=listing.description%>
-            </textarea>
-            <div class="invalid-feedback">desription shoul be required</div>
-        </div>
-
-        <!-- <div class="mb-2">
-            Original image :) <br><br>
-            <img src="<%= updatedImageUrl %>" >
-        </div> -->
-        <div class="mb-2">
-            <label for="image" class="form-label">Image</label>
-            <input
-             type="file"
-              name="listing[image]" 
-               class="form-control" 
+              class="form-control"
+              required
             >
-    
-        </div>
-        <div class="row">
-            <div class="mb-2 col-md-2">
-                <label for="price" class="form-label">Price</label>
-                <input type="number" name="listing[price]"  class="form-control" value="<%=listing.price%>" required>
-                <div class="invalid-feedback">price shoud be required</div>
-            </div>
-            <div class="mb-2 col-6">
-                <label for="country" class="form-label">Country</label>
-                <input type="text" name="listing[country]"  class="form-control" value="<%=listing.country%>" required>
-                <div class="invalid-feedback">please enter a valid counry name</div>
-            </div>
-        </div>
-        
-        <div class="mb-2">
-            <label for="location" class="form-label">Location</label>
-         <input type="text" name="listing[location]"  class="form-control" value="<%=listing.location%>" required>
-         <div class="invalid-feedback">location shoud be required</div>
-        </div>
-     <button class="btn btn-dark edit-btn mt-3">Edit</button>
-    
-    </form>
-    </div>
-    
-</div>
+            <div class="invalid-feedback">Please enter a valid title</div>
+          </div>
 
+          <!-- Description -->
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea
+              name="listing[description]"
+              class="form-control"
+              rows="3"
+              required
+            ><%=listing.description%></textarea>
+            <div class="invalid-feedback">Description is required</div>
+          </div>
+
+          <!-- Image -->
+          <div class="mb-3">
+            <label class="form-label">Upload New Image</label>
+            <input
+              type="file"
+              name="listing[image]"
+              class="form-control"
+            >
+          </div>
+
+          <!-- Price + Country -->
+          <div class="row">
+            <div class="mb-3 col-12 col-md-4">
+              <label class="form-label">Price (₹)</label>
+              <input
+                type="number"
+                name="listing[price]"
+                class="form-control"
+                value="<%=listing.price%>"
+                required
+              >
+              <div class="invalid-feedback">Price is required</div>
+            </div>
+
+            <div class="mb-3 col-12 col-md-8">
+              <label class="form-label">Country</label>
+              <input
+                type="text"
+                name="listing[country]"
+                class="form-control"
+                value="<%=listing.country%>"
+                required
+              >
+              <div class="invalid-feedback">Enter valid country</div>
+            </div>
+          </div>
+
+          <!-- Location -->
+          <div class="mb-3">
+            <label class="form-label">Location</label>
+            <input
+              type="text"
+              name="listing[location]"
+              class="form-control"
+              value="<%=listing.location%>"
+              required
+            >
+            <div class="invalid-feedback">Location is required</div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="d-flex justify-content-between mt-4">
+            <a href="/listings/<%=listing._id%>" class="btn btn-outline-secondary">
+              Cancel
+            </a>
+
+            <button class="btn btn-dark px-4">
+              Update
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+</div>
