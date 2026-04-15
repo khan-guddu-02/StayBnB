@@ -10,7 +10,6 @@ module.exports.singup=async (req,res)=>{
         let {email, username,password}=req.body;
         let newUser=new User({email,username});
         let regiteredUser=await User.register(newUser,password);
-        console.log(regiteredUser);
         req.login(regiteredUser,(err)=>{
             if(err){
                 return next(err);
