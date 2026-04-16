@@ -25,7 +25,7 @@ const bookingRoutes = require("./routes/booking.js");
 
 
 
-const Url =  "mongodb://localhost:27017/wanderlust"; //process.env.ATLASDB_URL ||
+const Url =  process.env.ATLASDB_URL ||   "mongodb://localhost:27017/wanderlust";
 main()
   .then(() => {
     console.log("connected to db!");
