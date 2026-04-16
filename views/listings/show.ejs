@@ -159,13 +159,53 @@
           ₹ <%= (listing.price || 0).toLocaleString("en-IN") %> / night
         </h5>
 
-        <button class="btn btn-dark w-100 mt-3">
-          Reserve
-        </button>
+        <% if(currentUser){ %>
+
+        <form action="/listings/<%= listing._id %>/book" method="POST">
+
+          <div class="mb-2">
+            <label class="form-label">Check In</label>
+            <input type="date" name="checkIn" class="form-control" required>
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">Check Out</label>
+            <input type="date" name="checkOut" class="form-control" required>
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">Guests</label>
+            <input type="number" name="guests" class="form-control" value="1" min="1">
+          </div>
+          <div class="mb-2">
+          <label class="form-label">Contact Number</label>
+          <input 
+            type="tel" 
+            name="phone" 
+            class="form-control" 
+            placeholder="Enter 10-digit number"
+            required
+          >
+        </div>
+
+          <button class="btn btn-dark w-100 mt-2">
+            Reserve
+          </button>
+
+        </form>
+
+       <% } else { %>
+
+        <a href="/login" class="btn btn-dark w-100 mt-3">
+            Login to Book
+        </a>
+
+        <% } %>
 
         <p class="text-muted small mt-2 text-center">
-          You won't be charged yet
+            You won't be charged yet
         </p>
+
       </div>
 
     </div>

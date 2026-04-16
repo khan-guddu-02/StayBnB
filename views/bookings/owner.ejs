@@ -1,0 +1,85 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container py-4">
+
+  <h2 class="mb-4">Owner Dashboard</h2>
+
+  <!-- STATS -->
+
+  <div class="row mb-4">
+
+<div class="col-md-4">
+  <div class="card text-center shadow-sm p-3">
+    <h5>Total Listings</h5>
+    <h3><%= totalListings %></h3>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card text-center shadow-sm p-3">
+    <h5>Total Bookings</h5>
+    <h3><%= totalBookings %></h3>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card text-center shadow-sm p-3">
+    <h5>Total Earnings</h5>
+    <h3>₹ <%= totalEarnings.toLocaleString("en-IN") %></h3>
+  </div>
+</div>
+
+
+  </div>
+
+  <!-- BOOKINGS LIST -->
+
+  <h4 class="mb-3">Bookings on My Listings</h4>
+
+<% if(bookings.length === 0){ %> <p>No bookings yet.</p>
+<% } %>
+
+  <div class="row g-3">
+
+<% for(let booking of bookings){ %>
+
+  <div class="col-12 col-md-6 col-lg-4">
+
+    <div class="card shadow-sm border-0 h-100">
+
+      <img 
+        src="<%= booking.listing.image.url %>" 
+        class="card-img-top"
+        style="height:200px; object-fit:cover;"
+      >
+
+      <div class="card-body">
+
+        <h5><%= booking.listing.title %></h5>
+
+        <p>👤 @<%= booking.user.username %></p>
+
+        <p>📞 <%= booking.phone %></p>
+
+        <p>
+          📅 <%= booking.checkIn.toDateString() %> → 
+          <%= booking.checkOut.toDateString() %>
+        </p>
+
+        <p>₹ <%= booking.totalPrice %></p>
+
+        <span class="badge bg-success">
+          <%= booking.status %>
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+<% } %>
+
+  </div>
+
+</div>

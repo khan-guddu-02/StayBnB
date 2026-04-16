@@ -1,0 +1,59 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container py-4">
+
+  <h2 class="mb-4">My Bookings</h2>
+
+<% if(bookings.length === 0){ %> <p>No bookings yet.</p>
+<% } %>
+
+  <div class="row g-3">
+
+
+<% for(let booking of bookings){ %>
+
+  <div class="col-12 col-md-6 col-lg-4">
+
+    <div class="card shadow-sm border-0 h-100">
+
+      <img 
+        src="<%= booking.listing.image.url %>" 
+        class="card-img-top" 
+        style="height:200px; object-fit:cover;"
+      >
+
+      <div class="card-body">
+
+        <h5><%= booking.listing.title %></h5>
+
+        <p>Check-In: <%= booking.checkIn.toDateString() %></p>
+        <p>Check-Out: <%= booking.checkOut.toDateString() %></p>
+        <p>Guests: <%= booking.guests %></p>
+
+        <p>₹ <%= booking.totalPrice %></p>
+
+        <p>Status: <%= booking.status %></p>
+
+        <% if(booking.status !== "cancelled"){ %>
+          <form 
+            action="/bookings/<%= booking._id %>?_method=DELETE" 
+            method="POST"
+          >
+            <button class="btn btn-sm btn-dark">
+              Cancel
+            </button>
+          </form>
+        <% } %>
+
+      </div>
+
+    </div>
+
+  </div>
+
+<% } %>
+
+
+  </div>
+
+</div>
