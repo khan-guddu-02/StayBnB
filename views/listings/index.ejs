@@ -1,18 +1,13 @@
 <% layout("/layouts/boilerplate") %>
 
 <body>
-  <div class="container pt-2 pb-3">
+  <div class="container-fluid px-2 pt-2 pb-3">
 
-    <!-- FILTER SECTION -->
+    <!-- FILTER + TOGGLE -->
     <div class="d-flex align-items-center justify-content-between mb-2">
 
       <!-- FILTERS -->
-      <div 
-        id="filters"
-        class="d-flex flex-nowrap overflow-auto"
-        style="gap:12px; white-space:nowrap;"
-      >
-
+      <div id="filters" class="d-flex flex-nowrap overflow-auto" style="gap:14px;">
         <% const filters = [
           {icon:"fas fa-fire", name:"Trending"},
           {icon:"fa-solid fa-bed", name:"Rooms"},
@@ -30,71 +25,144 @@
         ]; %>
 
         <% filters.forEach(f => { %>
-          <div style="min-width:70px; flex:0 0 auto; text-align:center; cursor:pointer;">
+          <div class="filter-item">
             <i class="<%= f.icon %>"></i>
-            <p style="font-size:0.75rem; margin:0;"><%= f.name %></p>
+            <p><%= f.name %></p>
           </div>
         <% }) %>
-
       </div>
 
       <!-- GST TOGGLE -->
-      <div 
-        class="ms-2 d-flex align-items-center"
-        style="background:#fff; border:1px solid #ddd; border-radius:25px; padding:6px 12px; gap:6px;"
-      >
-        <span style="font-size:0.8rem; white-space:nowrap;">
-          GST Included
-        </span>
-
+      <div class="gst-toggle ms-2 flex-shrink-0 mb-3">
+        <span>GST Included</span>
         <div class="form-check form-switch m-0">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="flexSwitchCheckDefault"
-            style="cursor:pointer;"
-          />
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"/>
         </div>
       </div>
 
     </div>
 
     <!-- LISTINGS -->
-    <div class="row g-3">
+    <div class="row g-2">
+
       <% for(let listing of allListing){ %>
 
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <a href="/listings/<%=listing._id%>" class="text-decoration-none text-dark">
+      <div class="col-12 col-sm-6 col-md-3 col-lg-2 p-1">
 
-          <div class="card h-100 shadow-sm border-0">
+        <div class="card listing-card">
+
+          <a href="/listings/<%=listing._id%>" class="text-decoration-none text-dark">
 
             <img
               src="<%=listing.image.url%>"
               class="card-img-top"
               alt="listing image"
-              style="height: 200px; object-fit: cover;"
             />
 
             <div class="card-body p-2">
-              <p class="mb-1">
-                <b><%=listing.title%></b>
+              <p class="title mb-1">
+                <%=listing.title%>
               </p>
 
-              <p class="mb-0 small">
-                ₹ <%= listing.price ? listing.price.toLocaleString("en-IN") : 'N/A' %> / night
-                <span class="tax-info text-muted" style="display:none;"> +18% GST</span>
+              <p class="price mb-0">
+                ₹ <%= listing.price ? listing.price.toLocaleString("en-IN") : 'N/A' %> 
+                <span>/ night</span>
+                <span class="tax-info"> +18% GST</span>
               </p>
             </div>
 
-          </div>
+          </a>
 
-        </a>
+        </div>
+
       </div>
 
       <% } %>
     </div>
 
   </div>
+
+  <!-- STYLE -->
+  <style>
+
+    .filter-item {
+      min-width: 65px;
+      text-align: center;
+      cursor: pointer;
+      opacity: 0.75;
+    }
+
+    .filter-item i {
+      font-size: 15px;
+    }
+
+    .filter-item p {
+      font-size: 0.7rem;
+      margin: 0;
+    }
+
+    .gst-toggle {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      background: #fff;
+    }
+
+    /*  MAIN CARD STYLING */
+    .listing-card {
+      border: none;
+      border-radius: 14px;
+      overflow: hidden;
+      margin: 0;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05); /* light shadow */
+      transition: all 0.2s ease;
+    }
+
+    .listing-card:hover {
+      transform: translateY(-5px);
+       box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .card-img-top {
+      height: 150px;
+      object-fit: cover;
+    }
+
+    @media(min-width:768px){
+      .card-img-top {
+        height: 160px;
+      }
+    }
+
+    .title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .price {
+      font-size: 0.75rem;
+      color: #444;
+    }
+
+    .price span {
+      color: #777;
+    }
+
+    .tax-info {
+      display: none;
+      margin-left: 3px;
+    }
+
+  </style>
 
   <!-- SCRIPT -->
   <script>
@@ -104,11 +172,7 @@
       let taxInfo = document.getElementsByClassName("tax-info");
 
       for (let info of taxInfo) {
-        if (taxSwitch.checked) {
-          info.style.display = "inline";
-        } else {
-          info.style.display = "none";
-        }
+        info.style.display = taxSwitch.checked ? "inline" : "none";
       }
     });
   </script>
