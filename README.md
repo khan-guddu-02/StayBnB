@@ -1,78 +1,125 @@
-# StayBnB (Wanderlust Project)
+# 🏡 StayBnB – Rental Booking Platform
 
-StayBnB is a **full-stack web application** inspired by Airbnb, where users can explore different listings, add their own stays, and manage bookings.  
-It is built with **Node.js, Express.js, MongoDB, EJS, and Bootstrap**.
+StayBnB is a full-stack server-rendered web application that allows users to explore, list, and book rental properties. It provides a seamless experience for both guests and hosts, similar to Airbnb.
+
+---
+
+## 🚀 Live Demo
+
+- 🌐 Live Application: https://my-project-dsal.onrender.com
+
+> ⚠️ Note: The app may take a few seconds to load initially due to Render free tier.
 
 ---
 
 ## 🚀 Features
-- User authentication (Sign up / Login / Logout)
-- CRUD operations on listings (Create, Read, Update, Delete)
-- Add and manage reviews for listings
-- Responsive and user-friendly design using Bootstrap
-- MongoDB database integration for storing listings and user data
+
+- 🔐 User Authentication (Register/Login)
+- 🏠 Browse rental listings with details (price, location, images)
+- ➕ Create, edit, and delete listings (Host functionality)
+- 📅 Booking system with date selection
+- ⭐ Reviews & ratings system
+- 🖼️ Image upload using Cloudinary
+- 🔍 Search & filter properties
+- 📱 Fully responsive design  
+
+### 📊 Dashboard Features
+
+- 📌 Track how many times listings are booked  
+- 📅 View booking dates  
+- 👤 See which user booked which listing  
+- 📈 Manage all listing performance in one place  
+
+### 🧾 My Bookings
+
+- View all booked properties  
+- Shows booking dates and listing details  
+- Easy tracking of user bookings  
 
 ---
 
-## Tech Stack
-- **Frontend:** EJS, Bootstrap, CSS
-- **Backend:** Node.js, Express.js
-- **Database:** MongoDB
-- **Authentication:** Passport.js
+## 🛠️ Tech Stack
+
+- Node.js  
+- Express.js  
+- MongoDB (MongoDB Atlas)  
+- Mongoose  
+- EJS (Server-side templating)  
+- Bootstrap  
+- Cloudinary  
 
 ---
 
 ## 📂 Project Structure
-StayBnB/
-│── models/ # Mongoose schemas
-│── routes/ # Express routes
-│── views/ # EJS templates
-│── public/ # Static files (CSS, JS, Images)
-│── app.js # Main application file
-│── package.json # Dependencies
 
+StayBnB/  
+│── models/  
+│── routes/  
+│── controllers/  
+│── views/ (EJS Templates)  
+│── public/ (Static Files)  
+│── utils/  
+│── app.js  
+│── package.json  
 
 ---
 
-## ⚙️ Installation & Setup
+## ⚙️ Installation & Setup (Local)
 
-1. Clone the repository
-   ```bash
-   git clone https://github.com/khan-guddu-02/staybnb.git
+git clone https://github.com/khan-guddu-02/StayBnB.git  
+cd StayBnB  
+npm install  
+node app.js  
 
-2.   Navigate to the project folder
-cd staybnb
+---
 
-3. Install dependencies
-npm install
+## 🌐 Environment Variables
 
-5. Set up environment variables (create a .env file in the root directory)
-MONGO_URI=your_mongodb_connection_string
-SESSION_SECRET=your_secret_key
+Create a `.env` file and add:
 
-5. Run the application
-node app.js
+ATLASDB_URL=your_mongodb_connection  
+CLOUD_NAME=your_cloud_name  
+CLOUD_API=your_key  
+CLOUD_API_SECRET=your_secret  
+SESSION_SECRET=your_secret_key 
 
-6. Open your browser and go to:
-http://localhost:3000
+---
 
-## 📸 Screenshots
+## 🎯 Key Highlights
 
-(Add screenshots or GIFs of your project here for visual reference)
+- Server-side rendered application using EJS  
+- Prevents double booking using date validation logic  
+- Dashboard for booking tracking and listing analytics  
+- My Bookings section for users  
+- Review and rating system  
+- Secure authentication and session management  
+- Clean MVC architecture  
+
+---
 
 ## 🔮 Future Improvements
 
-Implement booking/payment system
+- 💳 Payment Integration (Stripe / Razorpay)  
+- ❤️ Wishlist feature  
+- 🔔 Notifications  
+- 📊 Admin panel  
+- 📅 Advanced booking calendar  
 
-Add image upload with Cloudinary
+---
 
-Improve search and filter functionality
+## 🤝 Contributing
 
-Add user profile page for managing bookings
+Contributions are welcome! Feel free to fork the repo and submit a pull request.
+
+---
 
 ## 👨‍💻 Author
-**Gareeb Nawaz**
-GitHub  https://github.com/khan-guddu-02
 
+Gareeb Nawaz  
+- GitHub: https://github.com/khan-guddu-02
 
+---
 
+## ⭐ Support
+
+If you like this project, give it a ⭐ on GitHub!
