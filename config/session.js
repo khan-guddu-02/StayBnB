@@ -1,6 +1,6 @@
 const MongoStore = require("connect-mongo");
 
-const Url =process.env.ATLASDB_URL //"mongodb://localhost:27017/wanderlust"; 
+const Url = process.env.ATLASDB_URL //"mongodb://localhost:27017/wanderlust" 
 
 const store = MongoStore.create({
   mongoUrl: Url,

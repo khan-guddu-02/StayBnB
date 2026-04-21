@@ -16,6 +16,24 @@ const listingSchema = new Schema({
   price: Number,
   location: String,
   country: String,
+  category: {
+  type: String,
+  enum: [
+    "Trending",
+    "Rooms",
+    "Cities",
+    "Mountains",
+    "Castles",
+    "Pools",
+    "Camping",
+    "Beach",
+    "Nature",
+    "Snow",
+    "Villas",
+    "Boats",
+    "Forest"
+  ]
+},
   reviews: [
     {
       type:mongoose.Schema.Types.ObjectId,
@@ -30,7 +48,10 @@ const listingSchema = new Schema({
 
 listingSchema.post("findOneAndDelete",async(listing)=>{
 if (listing){
+  //review delete
 await  Review.deleteMany({_id:{$in: listing.reviews} });
+//booking delete
+await Booking.deleteMany({ listing: listing._id });
 }
 })
 

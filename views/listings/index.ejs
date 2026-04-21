@@ -25,10 +25,12 @@
         ]; %>
 
         <% filters.forEach(f => { %>
-          <div class="filter-item">
-            <i class="<%= f.icon %>"></i>
-            <p><%= f.name %></p>
-          </div>
+          <a href="/listings?category=<%= f.name %>" class="text-decoration-none text-dark">
+            <div class="filter-item <%= category === f.name ? 'active-filter' : '' %>">
+              <i class="<%= f.icon %>"></i>
+              <p><%= f.name %></p>
+            </div>
+          </a>
         <% }) %>
       </div>
 
@@ -89,7 +91,13 @@
       min-width: 65px;
       text-align: center;
       cursor: pointer;
-      opacity: 0.75;
+      opacity: 0.7;
+      padding-bottom: 5px;
+      transition: 0.2s;
+    }
+
+    .filter-item:hover {
+      opacity: 1;
     }
 
     .filter-item i {
@@ -99,6 +107,12 @@
     .filter-item p {
       font-size: 0.7rem;
       margin: 0;
+    }
+
+    /* ACTIVE FILTER */
+    .active-filter {
+      border-bottom: 2px solid black;
+      opacity: 1;
     }
 
     .gst-toggle {
@@ -113,20 +127,19 @@
       background: #fff;
     }
 
-    /*  MAIN CARD STYLING */
+    /* CARD */
     .listing-card {
       border: none;
       border-radius: 14px;
       overflow: hidden;
-      margin: 0;
       background: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05); /* light shadow */
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
       transition: all 0.2s ease;
     }
 
     .listing-card:hover {
       transform: translateY(-5px);
-       box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
 
     .card-img-top {

@@ -93,11 +93,13 @@ module.exports.createBooking = async (req, res) => {
 
 // GET USER BOOKINGS
 module.exports.getUserBookings = async (req, res) => {
-    const bookings = await Booking.find({ user: req.user._id })
-      .populate("listing")
-      .sort({ createdAt: -1 });
 
-    res.render("bookings/index", { bookings });
+  const bookings = await Booking.find({ user: req.user._id })
+    .populate("listing")
+    .sort({ createdAt: -1 });
+  const validBookings = bookings.filter(b => b.listing !== null);
+
+  res.render("bookings/index", { bookings: validBookings });
 };
 
 
